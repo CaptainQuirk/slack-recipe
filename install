@@ -1,0 +1,13 @@
+#!/bin/bash
+CACHE_DIR=$HOME/.cache/configuration/slack
+DEB_PACKAGE=slack-desktop-2.8.2-amd64.deb
+
+if [ ! -d $CACHE_DIR ]; then
+    mkdir -p $CACHE_DIR
+fi
+
+if [ ! -f $CACHE_DIR/$DEB_PACKAGE ]; then
+    sudo apt-get install libcurl3
+    wget https://downloads.slack-edge.com/linux_releases/slack-desktop-2.8.2-amd64.deb -P $CACHE_DIR
+    sudo dpkg -i $CACHE_DIR/$DEB_PACKAGE
+fi
