@@ -6,14 +6,14 @@ if [ ! -d "$CACHE_DIR" ]; then
     mkdir -p "$CACHE_DIR"
 fi
 
+if command -v slack > /dev/null 2>&1; then
+    echo "Slack is already installed"
+    exit 0
+fi
+
 if [ ! -f "$CACHE_DIR/$DEB_PACKAGE" ]; then
     sudo apt-get install libcurl3
     wget https://downloads.slack-edge.com/linux_releases/slack-desktop-2.8.2-amd64.deb -P "$CACHE_DIR"
 fi
 
 sudo dpkg -i "$CACHE_DIR/$DEB_PACKAGE"
-
-DESKTOP_FILE="$HOME/.config/autostart/slack.desktop"
-if [ ! -f "$DESKTOP_FILE" ]; then
-    cp /usr/share/applications/slack.desktop "$DESKTOP_FILE"
-fi
