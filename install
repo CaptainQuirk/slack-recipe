@@ -13,6 +13,7 @@ fi
 
 if [ ! -f "$CACHE_DIR/$DEB_PACKAGE" ]; then
     shef apt libcurl3
+    shef apt gir1.2-gnomekeyring
     wget https://downloads.slack-edge.com/linux_releases/slack-desktop-2.8.2-amd64.deb -P "$CACHE_DIR"
 fi
 
